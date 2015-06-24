@@ -1,3 +1,2 @@
 source 'httpssupermarket.getchef.com'
-
-metadata
+cookbook "windows", ">= 1.2.2"
