@@ -40,10 +40,21 @@ ruby_block "download-object" do
   action :run
 end
 
-Chef::Log.info("******unzip to local home******")
+Chef::Log.info("******unzip to local folder path******")
 windows_zipfile node['replaced_strawberryperl']['unzip_folder_path'] do
   source node['replaced_strawberryperl']['zip_path']
   action :unzip
+end
+
+Chef::Log.info("******replace folder and contents******")
+original_cpan_path = "#{node['replaced_strawberryperl']['unzip_folder_path']}\\cpan"
+original_perl_path = "#{node['replaced_strawberryperl']['unzip_folder_path']}\\perl"
+
+replaced_cpan_path = "#{node['strawberryperl']['home']}\\cpan"
+replaced_perl_path = "#{node['strawberryperl']['home']}\\perl"
+
+remote_directory original_cpan_path do
+  source replaced_cpan_path
 end
 
 
