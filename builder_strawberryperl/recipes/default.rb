@@ -25,12 +25,14 @@ node['replaced_strawberryperl']['unzip_folder_path'] = "#{node['strawberryperl']
 ruby_block "download-object" do
   block do
     require 'aws-sdk'
+	
+	Aws.config[:ssl_ca_bundle] = 'C:\ProgramData\Git\bin\curl-ca-bundle.crt'
 
     s3_client = Aws::S3::Client.new(region: 'us-west-2')
 
     s3_client.get_object(bucket: node['replaced_strawberryperl']['s3_bucket'],
                      key: node['replaced_strawberryperl']['s3_key'],
-                     response_target: node['replaced_strawberryperl']['zip_path']
+                     response_target: node['replaced_strawberryperl']['zip_path'])
   end
   action :run
 end
