@@ -10,6 +10,8 @@ end
 ruby_block "download-object" do
   block do
     require 'aws-sdk'
+	
+	Aws.config[:ssl_ca_bundle] = 'C:\ProgramData\Git\bin\curl-ca-bundle.crt'
 
     s3_client = Aws::S3::Client.new(region: 'us-west-2')
 
