@@ -19,6 +19,9 @@ chef_gem "aws-sdk" do
   action :install
 end
 
+node['replaced_strawberryperl']['zip_path'] = "#{node['strawberryperl']['home']}/#{['replaced_strawberryperl']['zip_fname']}"
+node['replaced_strawberryperl']['unzip_folder_path'] = "#{node['strawberryperl']['home']}/#{['replaced_strawberryperl']['unzip_foldername']}"
+
 ruby_block "download-object" do
   block do
     require 'aws-sdk'
@@ -27,13 +30,15 @@ ruby_block "download-object" do
 
     s3_client.get_object(bucket: node['replaced_strawberryperl']['s3_bucket'],
                      key: node['replaced_strawberryperl']['s3_key'],
-                     response_target: node['replaced_strawberryperl']['zip_path'])
+                     response_target: node['replaced_strawberryperl']['zip_path']
   end
   action :run
 end
 
 Chef::Log.info("******unzip to local home******")
 windows_zipfile node['replaced_strawberryperl']['unzip_path'] do
-  source node['replaced_strawberryperl']['zip_path']
+  source node['replaced_strawberryperl']['unzip_folder_path']
   action :unzip
 end
+
+
