@@ -53,10 +53,15 @@ original_perl_path = "#{node['replaced_strawberryperl']['unzip_folder_path']}\\p
 replaced_cpan_path = "#{node['strawberryperl']['home']}\\cpan"
 replaced_perl_path = "#{node['strawberryperl']['home']}\\perl"
 
-remote_directory original_cpan_path do
-  source replaced_cpan_path
-  overwrite true
-  action :create
-end
+#remote_directory original_cpan_path do
+#  source replaced_cpan_path
+#  overwrite true
+#  action :create
+#end
 
+powershell_script "Replace original Folders" do
+  code <<-EOH
+    copy-item -path replaced_cpan_path -destination original_cpan_path -verbose
+  EOH
+end
 
