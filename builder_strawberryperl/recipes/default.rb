@@ -22,6 +22,9 @@ end
 node['replaced_strawberryperl']['zip_path'] = "#{node['strawberryperl']['home']}/#{['replaced_strawberryperl']['zip_fname']}"
 node['replaced_strawberryperl']['unzip_folder_path'] = "#{node['strawberryperl']['home']}/#{['replaced_strawberryperl']['unzip_foldername']}"
 
+Chef::Log.info("******replace file zip path: #{node['replaced_strawberryperl']['zip_path']}******")
+Chef::Log.info("******replace file zip path: #{node['replaced_strawberryperl']['unzip_folder_path']}******")
+
 ruby_block "download-object" do
   block do
     require 'aws-sdk'
