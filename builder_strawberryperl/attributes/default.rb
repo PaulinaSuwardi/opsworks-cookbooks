@@ -11,5 +11,6 @@ default['strawberryperl']['home']    = "C:\\strawberry-perl-5.16.3.1"
 default['replaced_strawberryperl']['s3_region'] = "us-west-2"
 default['replaced_strawberryperl']['s3_bucket'] = "builder-poc"
 default['replaced_strawberryperl']['s3_key'] = "strawberry-replace-file.zip"
-default['replaced_strawberryperl']['zip_fname'] = "strawberry-replace-file.zip"
-default['replaced_strawberryperl']['unzip_foldername'] = "strawberry-replace-file"
+default['replaced_strawberryperl']['zip_path'] = "C:\\strawberry-perl-5.16.3.1\\strawberry-replace-file.zip"
+default['replaced_strawberryperl']['unzip_folder_path'] = "C:\\strawberry-perl-5.16.3.1\\strawberry-replace-file"
+

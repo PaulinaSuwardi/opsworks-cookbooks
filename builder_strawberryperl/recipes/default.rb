@@ -19,11 +19,11 @@ chef_gem "aws-sdk" do
   action :install
 end
 
-node['replaced_strawberryperl']['zip_path'] = "#{node['strawberryperl']['home']}/#{['replaced_strawberryperl']['zip_fname']}"
-node['replaced_strawberryperl']['unzip_folder_path'] = "#{node['strawberryperl']['home']}/#{['replaced_strawberryperl']['unzip_foldername']}"
+#node['replaced_strawberryperl']['zip_path'] = "#{node['strawberryperl']['home']}/#{['replaced_strawberryperl']['zip_fname']}"
+#node['replaced_strawberryperl']['unzip_folder_path'] = "#{node['strawberryperl']['home']}/#{['replaced_strawberryperl']['unzip_foldername']}"
 
-Chef::Log.info("******replace file zip path: #{node['replaced_strawberryperl']['zip_path']}******")
-Chef::Log.info("******replace file zip path: #{node['replaced_strawberryperl']['unzip_folder_path']}******")
+#Chef::Log.info("******replace file zip path: #{node['replaced_strawberryperl']['zip_path']}******")
+#Chef::Log.info("******replace file zip path: #{node['replaced_strawberryperl']['unzip_folder_path']}******")
 
 ruby_block "download-object" do
   block do
@@ -41,8 +41,8 @@ ruby_block "download-object" do
 end
 
 Chef::Log.info("******unzip to local home******")
-windows_zipfile node['replaced_strawberryperl']['unzip_path'] do
-  source node['replaced_strawberryperl']['unzip_folder_path']
+windows_zipfile node['replaced_strawberryperl']['unzip_folder_path'] do
+  source node['replaced_strawberryperl']['zip_path']
   action :unzip
 end
 
