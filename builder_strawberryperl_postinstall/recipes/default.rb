@@ -11,7 +11,7 @@ ruby_block "download-object" do
   block do
     require 'aws-sdk'
 
-    s3_client = Aws::S3::Client.new(region: node['builder_strawberryperl']['s3_region'])
+    s3_client = Aws::S3::Client.new(region: 'us-west-2')
 
     s3_client.get_object(bucket: node['builder_strawberryperl']['s3_bucket'],
                      key: node['builder_strawberryperl']['s3_key'],
@@ -20,7 +20,7 @@ ruby_block "download-object" do
   action :run
 end
 
-Chef::Log.info("******unzip a local home******")
+Chef::Log.info("******unzip to local home******")
 windows_zipfile node['builder_strawberryperl']['unzip_home'] do
   source node['builder_strawberryperl']['localpath']
   action :unzip
