@@ -55,6 +55,8 @@ replaced_perl_path = "#{node['strawberryperl']['home']}\\perl"
 
 remote_directory original_cpan_path do
   source replaced_cpan_path
+  overwrite true
+  action :create
 end
 
 
