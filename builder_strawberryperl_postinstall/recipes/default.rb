@@ -22,9 +22,9 @@ ruby_block "download-object" do
   action :run
 end
 
-Chef::Log.info("******unzip to local home******")
-windows_zipfile node['builder_strawberryperl']['unzip_home'] do
-  source node['builder_strawberryperl']['localpath']
-  action :unzip
-end
+#Chef::Log.info("******unzip to local home******")
+#windows_zipfile node['builder_strawberryperl']['unzip_home'] do
+#  source node['builder_strawberryperl']['localpath']
+#  action :unzip
+#end
 
