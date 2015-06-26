@@ -1,13 +1,13 @@
 Chef::Log.info("******Winzip install actions******")
 
-download_filepath = "#{node['builder']['download_folder']}\\winzip.zip"
+download_filepath = "#{node['winzip']['download_folder']}\\winzip.zip"
 Chef::Log.info("******Winzip create #{download_filepath}******")
 
 Chef::Log.info("******Winzip create download directory******")
 ruby_block "Create Directory" do
    block do
     require 'fileutils'
-    FileUtils.mkdir_p(node['builder']['download_folder'])
+    FileUtils.mkdir_p(default['winzip']['download_folder'])
    end
 end
 
