@@ -41,11 +41,6 @@ ruby_block "download-object" do
 end
 
 Chef::Log.info("******unzip to local folder path******")
-#directory node['replaced_strawberryperl']['unzip_folder_path'] do
-#  recursive true
-#  action :delete
-#  if { File.directory?(node['replaced_strawberryperl']['unzip_folder_path']) }
-#end
 
 windows_zipfile node['replaced_strawberryperl']['unzip_folder_path'] do
   source node['replaced_strawberryperl']['zip_path']
@@ -57,24 +52,9 @@ Chef::Log.info("******replace folder and contents******")
 replaced_cpan_path = "#{node['replaced_strawberryperl']['unzip_folder_path']}\\cpan"
 replaced_perl_path = "#{node['replaced_strawberryperl']['unzip_folder_path']}\\perl"
 
-original_cpan_path = "#{node['strawberryperl']['home']}\\cpan"
-original_perl_path = "#{node['strawberryperl']['home']}\\perl"
-
-ruby_block "replace strawberry perl cpan" do
+ruby_block "replace original strawberry perl and cpan" do
   block do
     FileUtils.cp_r(replaced_cpan_path, node['strawberryperl']['home'], :preserve => true, :remove_destination => true)
+	FileUtils.cp_r(replaced_perl_path, node['strawberryperl']['home'], :preserve => true, :remove_destination => true)
   end
 end
-
-#remote_directory original_cpan_path do
-#  source replaced_cpan_path
-#  overwrite true
-#  action :create
-#end
-
-#powershell_script "Replace original Folders" do
-#  code <<-EOH
-#    copy-item -path replaced_cpan_path -destination original_cpan_path -verbose
-#  EOH
-#end
-
