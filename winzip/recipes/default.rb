@@ -4,9 +4,7 @@ Chef::Log.info("******Winzip create download directory******")
 download_filepath = "#{node['builder']['download_folder']}\\#{node['builder']['download_filename']}"
 
 directory node['builder']['download_folder'] do
-  mode '0777'
   action :create
-  not_if { ::File.directory?(node['builder']['download_folder'] ) }
 end
 
 Chef::Log.info("******Winzip downloading from S3******")
