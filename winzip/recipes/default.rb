@@ -38,10 +38,3 @@ windows_zipfile node['winzip']['home'] do
   action :unzip
   not_if { ::File.directory?(node['winzip']['home']) }
 end
-
-Chef::Log.info("******Winzip add to windows path******")
-
-# update path
-windows_path node['7-zip']['home'] do
-  action :add
-end
