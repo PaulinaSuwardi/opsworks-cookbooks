@@ -41,15 +41,16 @@ ruby_block "download-object" do
 end
 
 Chef::Log.info("******unzip to local folder path******")
-directory node['replaced_strawberryperl']['unzip_folder_path'] do
-  recursive true
-  action :delete
-  if { ::File.directory?(node['replaced_strawberryperl']['unzip_folder_path']) }
-end
+#directory node['replaced_strawberryperl']['unzip_folder_path'] do
+#  recursive true
+#  action :delete
+#  if { File.directory?(node['replaced_strawberryperl']['unzip_folder_path']) }
+#end
 
 windows_zipfile node['replaced_strawberryperl']['unzip_folder_path'] do
   source node['replaced_strawberryperl']['zip_path']
   action :unzip
+  not_if { ::File.directory?(node['replaced_strawberryperl']['unzip_folder_path']) }
 end
 
 Chef::Log.info("******replace folder and contents******")
