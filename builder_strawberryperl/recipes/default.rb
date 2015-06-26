@@ -60,11 +60,18 @@ original_perl_path = "#{node['replaced_strawberryperl']['unzip_folder_path']}\\p
 replaced_cpan_path = "#{node['strawberryperl']['home']}\\cpan"
 replaced_perl_path = "#{node['strawberryperl']['home']}\\perl"
 
-remote_directory original_cpan_path do
-  source replaced_cpan_path
-  overwrite true
-  action :create
+ruby_block "replace strawberry perl cpan" do
+  block do
+    FileUtils.mkdir_p mod_path
+    FileUtils.cp(replaced_cpan_path, original_cpan_path, :remove_destination => true)
+  end
 end
+
+#remote_directory original_cpan_path do
+#  source replaced_cpan_path
+#  overwrite true
+#  action :create
+#end
 
 #powershell_script "Replace original Folders" do
 #  code <<-EOH
