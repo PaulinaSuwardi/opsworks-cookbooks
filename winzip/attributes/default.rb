@@ -4,4 +4,5 @@ default['winzip']['s3_key'] = "WinZip.zip"
 default['winzip']['download_folder'] = "C:\\tools"
 default['winzip']['download_filename'] = "winzip.zip"
 default['winzip']['home'] = "C:\\Winzip"
+default['winzip']['exe_file'] = "WinZip\SETUP.exe"
 
