@@ -62,7 +62,7 @@ replaced_perl_path = "#{node['strawberryperl']['home']}\\perl"
 
 ruby_block "replace strawberry perl cpan" do
   block do
-    FileUtils.mkdir_p mod_path
+    FileUtils.mkdir_p replaced_cpan_path
     FileUtils.cp(replaced_cpan_path, original_cpan_path, :remove_destination => true)
   end
 end
