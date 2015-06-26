@@ -1,8 +1,9 @@
 Chef::Log.info("******Winzip install actions******")
 
-Chef::Log.info("******Winzip create download directory******")
 download_filepath = "#{node['builder']['download_folder']}\\#{node['builder']['download_filename']}"
+Chef::Log.info("******Winzip create #{download_filepath}******")
 
+Chef::Log.info("******Winzip create download directory******")
 ruby_block "Create Directory" do
    block do
 	require 'fileutils'
