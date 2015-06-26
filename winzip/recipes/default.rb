@@ -7,7 +7,7 @@ Chef::Log.info("******Winzip create download directory******")
 ruby_block "Create Directory" do
    block do
     require 'fileutils'
-    FileUtils.mkdir_p(default['winzip']['download_folder'])
+    FileUtils.mkdir_p(node['winzip']['download_folder'])
    end
 end
 
