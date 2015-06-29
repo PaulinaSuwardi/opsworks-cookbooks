@@ -45,9 +45,9 @@ windows_zipfile node['winzip']['home'] do
   not_if { ::File.directory?(node['winzip']['home']) }
 end
 
-Chef::Log.info("******Winzip install exe*****")
-installation_exe_path = "#{node['winzip']['home']}\\#{node['winzip']['exe_file']}"
-windows_package 'winzip' do
-  source installation_exe_path
-  action :install
-end
+#Chef::Log.info("******Winzip install exe*****")
+#installation_exe_path = "#{node['winzip']['home']}\\#{node['winzip']['exe_file']}"
+#windows_package 'winzip' do
+#  source installation_exe_path
+#  action :install
+#end
